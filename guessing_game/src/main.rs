@@ -34,12 +34,18 @@ fn generate_secret_number() -> u32 {
     secret_number
 }
 
+fn compare(guess, secret_number) {
+    
+}
+
 
 fn main() {
     println!("***************\nGuessing Game!\n***************");
 
     let secret_number = generate_secret_number();
     let guess = process_guess();
+
+    compare(guess, secret_number);
 }
 
 
@@ -50,5 +56,10 @@ mod tests {
     #[test]
     fn test_process_guess() {
         assert_eq!(3,3)
+    }
+
+    #[test]
+    fn test_generate_secret_number() {
+        assert_eq!(4,4)
     }
 }
