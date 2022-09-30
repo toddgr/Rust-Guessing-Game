@@ -8,16 +8,47 @@
 */
 
 use std::io;
+use rand::Rng;
 
-fn main() {
-    println!("***************\nGuessing Game!\n***************");
+fn process_guess() -> String { 
+
     println!("Input your guess please");
 
+    // Since we cannot really know what the user input will be, this variable is mutable
     let mut guess = String::new();
 
+    // Read in line, handle potential failure of unexpected input. Expect is required
     io::stdin()
         .read_line(&mut guess)
         .expect("Uh oh! Failed to read line");
 
     println!("Your guess: {guess}");
+
+    guess
+}
+
+fn generate_secret_number() -> u32 { 
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("Psst... the secret number is {secret_number}");
+    
+    secret_number
+}
+
+
+fn main() {
+    println!("***************\nGuessing Game!\n***************");
+
+    let secret_number = generate_secret_number();
+    let guess = process_guess();
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_process_guess() {
+        assert_eq!(3,3)
+    }
 }
