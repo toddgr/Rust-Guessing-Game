@@ -9,8 +9,9 @@
 
 use std::io;
 use rand::Rng;
+use std::cmp::Ordering;
 
-fn process_guess() -> String { 
+fn process_guess() -> u32 { 
 
     println!("Input your guess please");
 
@@ -21,6 +22,8 @@ fn process_guess() -> String {
     io::stdin()
         .read_line(&mut guess)
         .expect("Uh oh! Failed to read line");
+
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
     println!("Your guess: {guess}");
 
@@ -34,18 +37,22 @@ fn generate_secret_number() -> u32 {
     secret_number
 }
 
-fn compare(guess, secret_number) {
-    
-}
-
 
 fn main() {
     println!("***************\nGuessing Game!\n***************");
 
     let secret_number = generate_secret_number();
-    let guess = process_guess();
+    
+    loop {
+        let guess = process_guess();
 
-    compare(guess, secret_number);
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => println!("Yay! You win :)"),
+        }
+    }
+
 }
 
 
