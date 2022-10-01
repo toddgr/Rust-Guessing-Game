@@ -8,7 +8,7 @@ Create a simple guessing game in Rust to practice implementing Cargo and Rust :)
 * Cargo
 
 ## To Play
-Navigate to the program directory.
+Download the repository. Navigate to the program directory.
 ```
 cd ./guessing_game 
 cargo build 
